@@ -73,6 +73,17 @@ test('enter selects focused option', function() {
           assertClosed();
 });
 
+test('enter without a matched option fires on-select-not-in-list', function(){
+  expect(2);
+  setup(this);
+  input.val('Literally not in the list').trigger('change');
+  component.sendAction = function(actionName, value){
+    equal(actionName, 'on-select-not-in-list');
+    equal(value, 'Literally not in the list');
+  };
+  input.simulate('keydown', {keyCode: 13});
+});
+
 test('spacebar selects focused option', function() {
   setup(this);
   openWithDownArrow();

@@ -265,7 +265,7 @@ define(
        * @method handleKeydown
        * @private
        */
-     
+
       handleKeydown: function(event) {
         var map = this.get('keydownMap');
         var method = map[event.keyCode];
@@ -477,6 +477,8 @@ define(
           }
           this.selectOption(option, {focus: false, focusOption: false});
           this.set('autocompletedOption', null);
+        } else {
+          this.sendAction('on-select-not-in-list', option);
         }
       },
 

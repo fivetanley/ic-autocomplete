@@ -26,6 +26,7 @@ ic-autocomplete-list {
     on-input="filterStates"
     on-select="resetStates"
     placeholder="Enter or pick a state"
+    on-select-not-in-list="notInList"
   }}
     {{#each filteredStates}}
       {{#ic-autocomplete-option value=id label=name}}{{name}}{{/ic-autocomplete-option}}
@@ -102,7 +103,11 @@ ic-autocomplete-list {
 
       setMovieSearch: throttle(function(autocomplete, term) {
         this.set('movieSearch', term);
-      }, 500)
+      }, 500),
+
+      notInList: function(text){
+        alert('You entered ' + text + ' but it is not in the list!');
+      },
     },
 
     filter: function(term) {
